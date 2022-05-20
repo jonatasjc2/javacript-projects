@@ -1,0 +1,66 @@
+//variáveis
+let imagemDaEstrada;
+let ImagemAtor;
+let imagemCarro1;
+let imagemCarro2;
+//variáveis do Ator
+let yDaVaquinha =  365;
+
+//variáveis do carro1
+let xDoCarro1 = 400;
+
+//variáveis do carro2
+let xDoCarro2 = 400;
+
+function preload(){
+  imagemDaEstrada =  loadImage("imagens/estrada.png");
+  imagemAtor =  loadImage("imagens/ator-1.png");
+  imagemCarro1 = loadImage("imagens/carro-1.png");
+  imagemCarro2 = loadImage("imagens/carro-2.png");
+
+}
+  
+function setup() {
+  createCanvas(500, 400);
+}
+
+function draw() {
+  
+  background(imagemDaEstrada);
+  showTheImagens(); 
+  moveTheCars();
+  moveTheCow();
+}
+
+function moveTheCars(){
+  xDoCarro1 -= 5;
+  xDoCarro2 -= 3;
+  
+  if(xDoCarro1 < -50){
+    xDoCarro1 = 600
+  }
+  
+  if(xDoCarro2 < -50){
+    xDoCarro2 = 600;  
+    
+  }
+}
+
+function showTheImagens(){
+ image(imagemAtor,100,yDaVaquinha,30,30);
+ image(imagemCarro1,xDoCarro1,40,45,40);
+ image(imagemCarro1,xDoCarro2,95,45,40);
+}
+
+function moveTheCow(){
+  if(keyIsDown(UP_ARROW)){
+      yDaVaquinha -= 3;
+      
+    }
+  
+  if(keyIsDown(DOWN_ARROW)){
+      yDaVaquinha += 3;
+      
+    }
+  
+}
