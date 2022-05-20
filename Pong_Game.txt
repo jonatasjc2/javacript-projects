@@ -1,0 +1,137 @@
+//variáveis da bolinha
+let xBolinha = 300;
+let yBolinha = 200;
+let diametro = 23;
+let raio = diametro/ 2 ;
+
+//variaveis das raquetes
+let xR1 = 7;
+let yR1 = 150
+let hR = 90;
+let wR = 10;
+let yR2 = 150;
+let xR2 = 585;
+let velocidadeRaquete = 0;
+
+//velocidade da bolinha
+let velocidadeX = 6;
+let velocidadeY = 6;
+
+//placar
+let meuspontos = 0
+let pontosMaquina = 0
+function setup() {
+  createCanvas(600, 400);
+}
+
+function draw() {
+  
+  background(0);
+  mostraBolinha();
+  mostraRaquete(xR1,yR1);
+  mostraRaquete(xR2,yR2);
+  movimentaBolinha();
+  movimentaRaquete1();
+  movimentaRaquete2();
+  verificaColisaoBorda();
+  verificaColisaoRaquete1();
+  verificaColisaoRaquete2();
+  incluePlacar();
+  marcaPonto();
+  //bolinhaNaoFicaPresa();
+}
+
+function mostraRaquete(x, y){
+
+  rect(x,y,wR,hR);
+  
+}
+
+function movimentaRaquete1(){
+  if(keyIsDown (UP_ARROW)){
+    yR1 -= 10;
+  }
+   if(keyIsDown (DOWN_ARROW)){
+    yR1 += 10;
+  }
+}
+
+function movimentaRaquete2(){
+if(keyIsDown (87)){
+    yR2 -= 10;
+  }
+   if(keyIsDown (83)){
+    yR2 += 10;
+  }
+   
+}
+
+function mostraBolinha(){
+  circle(xBolinha, yBolinha, diametro);
+}
+
+function movimentaBolinha(){
+  xBolinha += velocidadeX;
+  yBolinha += velocidadeY;
+}
+
+function verificaColisaoBorda(){
+  
+  if (xBolinha + raio> width ||
+     xBolinha - raio< 0){
+    velocidadeX*= -1;
+  }
+  if (yBolinha + raio> height ||
+     yBolinha - raio < 0){
+    velocidadeY *= -1;
+  }
+}
+
+function verificaColisaoRaquete1(){
+  if (xBolinha - raio < xR1 + wR && 
+      yBolinha - raio < yR1 + hR && 
+      yBolinha + raio > yR1){
+      velocidadeX *= -1;
+  }
+}
+
+function verificaColisaoRaquete2(){
+   if (xBolinha + raio > xR2 - wR && 
+      yBolinha - raio < yR2 + hR && 
+      yBolinha + raio > yR2){
+      velocidadeX *= -1;
+ 
+}
+  
+}
+
+function incluePlacar(){
+  //cor branca com o fill(255)
+  fill(255);
+  //Imprime um texto na coordenadas cartesianas dadas
+  text(meuspontos,200,20)
+  text(pontosMaquina,380,20)
+  
+  
+    
+}
+
+function marcaPonto(){
+  
+  if(xBolinha>590){
+    meuspontos += 1;
+  }
+    
+  if(xBolinha<10){
+    pontosMaquina += 1;
+    
+  }
+  
+}
+
+
+function bolinhaNaoFicaPresa(){
+    if (XBolinha - raio < 0){
+    XBolinha = 23
+    }
+}
